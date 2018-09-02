@@ -89,15 +89,20 @@ public class Triangle {
 		Triangle right = map.get(Direction.RIGHT);
 		if(upwardPointing){
 			Triangle below = map.get(Direction.BELOW);
-			map.put(Direction.LEFT, right);
-			map.put(Direction.RIGHT, below);
-			map.put(Direction.BELOW, left);
+			map.put(Direction.LEFT, below);
+			map.put(Direction.ABOVE, left);
+			map.put(Direction.RIGHT, right);
+			map.remove(Direction.BELOW);
+			upwardPointing = false;
+			
 		}else{
 
 			Triangle above = map.get(Direction.ABOVE);
-			map.put(Direction.LEFT, above);
-			map.put(Direction.ABOVE, right);
-			map.put(Direction.RIGHT, left);
+			map.put(Direction.LEFT, left);
+			map.put(Direction.BELOW, right);
+			map.put(Direction.RIGHT, above);
+			map.remove(Direction.ABOVE);
+			upwardPointing = true;
 		}
 		for(Direction d : Direction.values()){
 			if(map.get(d) == null){

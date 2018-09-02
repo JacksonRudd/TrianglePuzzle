@@ -22,11 +22,21 @@ public abstract class Piece {
 	
 	public void getNextOrientation() {
 		
-		orientation = (orientation + 1) % 3;
+		orientation = (orientation + 1) % 10;
 		rotateRight();
-		System.out.println("the new orientation is" + orientation);
+		if(orientation == 4 || orientation == 9){
+			flip();
+		}
 	}
 	
+	private Piece flip() {
+		for(Triangle t : allTriangles){
+			t.flip();
+		}
+		upperLeftTriangle = getNewUpperLeft();
+		return this;
+		
+	}
 	public Piece rotateRight(){
 		for(Triangle t : allTriangles){
 			t.rotateRight();

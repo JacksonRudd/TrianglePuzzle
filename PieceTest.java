@@ -1,4 +1,3 @@
-import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +11,12 @@ public class PieceTest {
 	@Test
 	public void testRotate() throws Exception {
 		Board board = new Board();
-		Duck duck = new Duck();
-		board.fillShapeAttemptSucceeds(duck,                 board.upperLeftCorner.getTriangle(Direction.BELOW).getTriangle(Direction.LEFT).getTriangle(Direction.BELOW));
+		Piece duck = new MountainPiece();
+		board.fillShapeAttemptSucceeds(duck,                 board.upperLeftCorner.getTriangle(Direction.BELOW).getTriangle(Direction.LEFT).getTriangle(Direction.BELOW).getTriangle(Direction.RIGHT));
 		board.print();
 		duck.rotateRight();
 		board.remove(duck);
-		System.out.print(board.fillShapeAttemptSucceeds(duck, board.upperLeftCorner.getTriangle(Direction.BELOW).getTriangle(Direction.LEFT).getTriangle(Direction.BELOW).getTriangle(Direction.LEFT)));
+		System.out.print(board.fillShapeAttemptSucceeds(duck, board.upperLeftCorner.getTriangle(Direction.BELOW).getTriangle(Direction.LEFT).getTriangle(Direction.BELOW).getTriangle(Direction.RIGHT).getTriangle(Direction.BELOW)));
 		board.print();
 	}
 //	
