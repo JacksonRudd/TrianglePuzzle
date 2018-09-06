@@ -1,4 +1,7 @@
 public class CrownPiece extends Piece{
+	int numberOfFlipOrientations = 1;
+
+	
 	public CrownPiece(){
 		super();
 		toChar = 'A';

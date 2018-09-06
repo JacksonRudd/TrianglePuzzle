@@ -1,4 +1,5 @@
 public class HourGlassPiece extends Piece{
+	int numberOfFlipOrientations = 1;
 
 	public HourGlassPiece(){
 		super();

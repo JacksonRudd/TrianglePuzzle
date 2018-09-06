@@ -1,4 +1,5 @@
 public class NikeSwooshPiece extends Piece{
+	int numberOfFlipOrientations = 1;
 	NikeSwooshPiece(){
 		super();
 		toChar = 'N';

@@ -6,19 +6,20 @@ public class BackTrackingSolution{
 	public Set<Piece> notUsed; 
 	public Board board;
 	public BoardTraverser boardTraverser;
+	public int totalSolutions = 0;
+	
 	
 	public void backtrack() throws Exception{
 		if (this.isDone()){
 			this.board.print();
+			totalSolutions += 1;
+			System.out.println("Now we have " + totalSolutions + " many solutions");
 			return;
 		}
 		Set<Piece> tryThisTurn = new HashSet<Piece>(notUsed);
 		
 		for(Piece piece: tryThisTurn){
-			//System.out.println(piece.getClass());
-//			if(board.piecesMap.size() == 11){
-//				board.print();
-//			}
+
 			do{
 				if(board.fillShapeAttemptSucceeds(piece, boardTraverser.getFirstUnoccupiedTriangle() ) ){
 					if(board.piecesMap.size() == 1){board.print();}
@@ -36,6 +37,8 @@ public class BackTrackingSolution{
 
 	private boolean isDone(){
 		return notUsed.isEmpty();
+		
+		
 	}
 
 }

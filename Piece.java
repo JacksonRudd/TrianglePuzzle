@@ -5,10 +5,13 @@ import java.util.Set;
 import java.util.Stack;
 
 public abstract class Piece {
+	int currentFlipOrientation = 0;
+	int currentRotationOrientation = 0;
+	int numberOfFlipOrientations = 2;
+	int numberOfRotateOrientations = 6;
 	Triangle upperLeftTriangle;
 	char toChar;
 	Set<Triangle> allTriangles;
-	private int orientation = 0;
 	
 	public Piece(){
 		createTriangleGraph();
@@ -21,23 +24,24 @@ public abstract class Piece {
 	}
 	
 	public void getNextOrientation() {
-		
-		orientation = (orientation + 1) % 10;
 		rotateRight();
-		if(orientation == 4 || orientation == 9){
+		if(numberOfFlipOrientations == 2 && currentRotationOrientation == 0){
 			flip();
 		}
+		
 	}
 	
 	private Piece flip() {
 		for(Triangle t : allTriangles){
 			t.flip();
 		}
+		currentFlipOrientation = currentFlipOrientation %numberOfFlipOrientations;
 		upperLeftTriangle = getNewUpperLeft();
 		return this;
 		
 	}
 	public Piece rotateRight(){
+		currentRotationOrientation = (currentRotationOrientation + 1) % numberOfRotateOrientations;
 		for(Triangle t : allTriangles){
 			t.rotateRight();
 		}
@@ -124,7 +128,7 @@ public abstract class Piece {
 	}
 		
 	public boolean isFirstOrientation() {
-		return orientation == 0;
+		return currentFlipOrientation == 0 && currentRotationOrientation == 0;
 	}
 
 	public char toChar() {

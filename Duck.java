@@ -1,4 +1,5 @@
 public class Duck extends Piece{
+		int numberOfRotateOrientations = 3;
 
 		public Duck(){
 			super();
